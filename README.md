@@ -23,46 +23,16 @@
 ---
 
 ### 🏗️ Building Backend
+
 I build distributed, event-driven systems that scale to millions of users and stay observable from end to end.
 
-```mermaid
-flowchart LR
-    C(["🌐 Client"]) --> G("🚪 API layer")
-    G -- "✍️ commands" --> W("📝 Write service")
-    G -- "🔎 queries" --> Q("📖 Read service")
-    W --> WS[("💾 Write store")]
-    W --> K[["📨 Kafka<br/>domain events"]]
-    K --> P("⚡ Async consumers<br/>batch + fan-out")
-    P --> RM[("🗄️ Read model<br/>DynamoDB")]
-    Q --> RM
-    T(["🔭 OpenTelemetry<br/>trace context on every hop"])
-    T -.-> G
-    T -.-> K
-    T -.-> P
+<p align="center">
+  <img src="./assets/backend-flow.svg" alt="Architecture diagram: a client calls an API layer that splits into commands to a write service and queries to a read service. The write service saves to a write store and publishes domain events to Kafka. Async consumers process the events into a DynamoDB read model that the read service queries. OpenTelemetry trace context flows through the API layer, Kafka and the consumers." width="100%">
+</p>
 
-    classDef client fill:#fff3c4,stroke:#ffd23f,stroke-width:2px,color:#5c4a00;
-    classDef api fill:#e6dcff,stroke:#a98bff,stroke-width:2px,color:#3b2a70;
-    classDef write fill:#ffe0ec,stroke:#ff8fb8,stroke-width:2px,color:#5a2a3c;
-    classDef read fill:#d9f7e8,stroke:#5fd0a0,stroke-width:2px,color:#1f5a45;
-    classDef store fill:#ffe8d1,stroke:#ffab5e,stroke-width:2px,color:#5c3410;
-    classDef stream fill:#d6f0ff,stroke:#5bb8f5,stroke-width:2px,color:#12496b;
-    classDef worker fill:#fff0b8,stroke:#f5c400,stroke-width:2px,color:#5c4a00;
-    classDef otel fill:#425cc7,stroke:#2f45a0,stroke-width:2px,color:#ffffff;
-    class C client;
-    class G api;
-    class W write;
-    class Q read;
-    class WS,RM store;
-    class K stream;
-    class P worker;
-    class T otel;
-    linkStyle default stroke:#b39ddb,stroke-width:2px
-    linkStyle 8,9,10 stroke:#425cc7,stroke-width:2px,stroke-dasharray:4 4
-```
-
+![Distributed System](https://img.shields.io/badge/Distributed%20System-0E8A16?style=flat-square)
 ![Event-driven](https://img.shields.io/badge/Event--Driven-6E40C9?style=flat-square)
 ![CQRS](https://img.shields.io/badge/CQRS-1F6FEB?style=flat-square)
-![Distributed batch processing](https://img.shields.io/badge/Distributed%20Batch%20Processing-0E8A16?style=flat-square)
 ![Access pattern design](https://img.shields.io/badge/Access%20Pattern%20Design-F5A800?style=flat-square)
 ![Infrastructure as code](https://img.shields.io/badge/Infrastructure%20as%20Code-FF4F8B?style=flat-square)
 ![Performance tuning](https://img.shields.io/badge/Performance%20Tuning-3FB950?style=flat-square)
@@ -81,40 +51,9 @@ flowchart LR
 
 #### 🧭 How my ideas flow through the collector
 
-```mermaid
-flowchart LR
-    subgraph R["📥 receivers"]
-        A(["🐛 prod bugs"])
-        B(["📚 things I read"])
-        C(["💡 curiosity"])
-    end
-    subgraph P["⚙️ processors"]
-        D(["📦 batch<br/>experiments"])
-        E(["🧹 filter<br/>noise"])
-        F(["🏷️ attributes<br/>add context"])
-    end
-    subgraph X["📤 exporters"]
-        G(["🔭 GitHub repos"])
-        H(["📝 Medium articles"])
-    end
-    A --> D
-    B --> D
-    C --> D
-    D --> E --> F
-    F --> G
-    F --> H
-
-    classDef recv fill:#ffe0ec,stroke:#ff8fb8,stroke-width:2px,color:#5a2a3c;
-    classDef proc fill:#dfeaff,stroke:#7aa7ff,stroke-width:2px,color:#243b6b;
-    classDef exp fill:#d9f7e3,stroke:#5fd08a,stroke-width:2px,color:#1f5a37;
-    class A,B,C recv;
-    class D,E,F proc;
-    class G,H exp;
-    style R fill:#fff5f9,stroke:#ff8fb8,stroke-width:2px,stroke-dasharray:6 4,color:#c2456f
-    style P fill:#f4f8ff,stroke:#7aa7ff,stroke-width:2px,stroke-dasharray:6 4,color:#3d63c9
-    style X fill:#f3fff7,stroke:#5fd08a,stroke-width:2px,stroke-dasharray:6 4,color:#2e8a57
-    linkStyle default stroke:#b39ddb,stroke-width:2px
-```
+<p align="center">
+  <img src="./assets/collector.svg" alt="Pipeline diagram in the style of an OpenTelemetry Collector: receivers (prod bugs, things I read, curiosity) flow through processors (batch experiments, filter noise, add context attributes) to exporters (GitHub repos, Medium articles)." width="100%">
+</p>
 
 ---
 
