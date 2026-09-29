@@ -14,14 +14,6 @@
 
 ---
 
-### 🔭 `about.js` - About Me🙆🏻‍♀️
-
-<p align="center">
-  <img src="./assets/console.svg" alt="Terminal output of node about.js: an OpenTelemetry span named about-me with attributes role backend engineer, focus distributed systems, event-driven and observability, cloud aws, coffee.cups Infinity, and a published event about OpenTelemetry on Medium" width="100%">
-</p>
-
----
-
 ### 🏗️ Building Backend
 
 I build distributed, event-driven systems that scale to millions of users and stay observable from end to end.
